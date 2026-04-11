@@ -137,7 +137,7 @@ colormap(jet);
 hold off;
 
 %% ================== MONTE CARLO ==================
-N_run = 100;
+N_run = 10;
 
 results_kNN   = zeros(N_run, 1);
 results_kNMAP = zeros(N_run, 1);
@@ -319,20 +319,30 @@ hold off;
 
 %% ================== BIỂU ĐỒ 2: HISTOGRAM PHÂN BỐ PL ==================
 nbins_pl = 15;
-[cnt_LOS,  edges_LOS]  = histcounts(PL_LOS_all,  nbins_pl);
-[cnt_NLOS, edges_NLOS] = histcounts(PL_NLOS_all, nbins_pl);
 
-bin_LOS  = (edges_LOS(1:end-1)  + edges_LOS(2:end))  / 2;
-bin_NLOS = (edges_NLOS(1:end-1) + edges_NLOS(2:end)) / 2;
+edges = linspace(min([PL_LOS_all; PL_NLOS_all]), ...
+                 max([PL_LOS_all; PL_NLOS_all]), nbins_pl+1);
+
+[cnt_LOS,  ~] = histcounts(PL_LOS_all,  edges);
+[cnt_NLOS, ~] = histcounts(PL_NLOS_all, edges);
+
+bin_centers = (edges(1:end-1) + edges(2:end)) / 2;
 
 figure('Color','w'); hold on;
-barh(bin_LOS,   cnt_LOS,  1.2, 'FaceAlpha', 0.7, 'FaceColor', [0 0.45 0.74],   'DisplayName', 'LOS');
-barh(bin_NLOS, -cnt_NLOS, 1.2, 'FaceAlpha', 0.7, 'FaceColor', [0.85 0.33 0.1], 'DisplayName', 'NLOS');
 
+%  CỘT NGANG (cùng phía, không đối xứng)
+bar(bin_centers, cnt_LOS,  0.4, 'FaceColor', [0 0.45 0.74], ...
+     'DisplayName', 'LOS');
+
+bar(bin_centers, cnt_NLOS, 0.4, 'FaceColor', [0.85 0.33 0.1], ...
+     'DisplayName', 'NLOS');
+
+xlabel('So diem', 'FontSize', 12);
 ylabel('Path Loss (dB)', 'FontSize', 12);
-xlabel('So diem',        'FontSize', 12);
-title('Phan bo suy hao duong truyen LOS vs NLOS - 3GPP TR 38.901', ...
+
+title('Phan bo Path Loss LOS vs NLOS - 3GPP TR 38.901', ...
       'FontSize', 14, 'FontWeight', 'bold');
-legend('Location', 'best', 'FontSize', 10);
-xt2 = get(gca,'XTick'); set(gca,'XTickLabel', abs(xt2));
-grid on; box on; hold off;
+
+legend('Location','best');
+grid on; box on;
+hold off;
