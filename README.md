@@ -72,7 +72,7 @@ Mo-phong-hieu-suat-mang-khong-day-trong-moi-truong-co-chuong-ngai-vat-main/
 
 1\. Mở MATLAB
 
-2\. Di chuyển đến thư mục project
+2\. Di chuyển đến thư mục chứa dự án
 
 3\. Chạy file main.m
 
