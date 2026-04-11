@@ -24,17 +24,17 @@ Xác định điều kiện truyền: LOS và NLOS
 
 Đánh giá hiệu suất mạng qua:
 
-&nbsp; Công suất thu (Received Power)
+  Công suất thu (Received Power)
 
-&nbsp; SNR (Signal-to-Noise Ratio)
+  SNR (Signal-to-Noise Ratio)
 
-&nbsp; Tốc độ truyền (Throughput)
+  Tốc độ truyền (Throughput)
 
 So sánh độ chính xác của:
 
-&nbsp; kNN
+  kNN
 
-&nbsp; kN-MAP
+  kN-MAP
 
 
 
@@ -42,13 +42,13 @@ So sánh độ chính xác của:
 
 
 
-&nbsp; Bán kính vùng: 150 m
+  Bán kính vùng: 150 m
 
-&nbsp; Người dùng phân bố ngẫu nhiên
+  Người dùng phân bố ngẫu nhiên
 
-&nbsp; Cột phát sóng đặt tại (0,0)
+  Cột phát sóng đặt tại (0,0)
 
-&nbsp; Vật cản dạng hình chữ nhật sinh ngẫu nhiên (PPP)
+  Vật cản dạng hình chữ nhật sinh ngẫu nhiên (PPP)
 
 
 
@@ -58,9 +58,9 @@ So sánh độ chính xác của:
 
 Mo-phong-hieu-suat-mang-khong-day-trong-moi-truong-co-chuong-ngai-vat-main/
 
-&nbsp;├── main\_code/            # Code chính MATLAB
+ ├── main\_code/            # Code chính MATLAB
 
-&nbsp;└── paper\_simulations/     # Tài liệu tham khảo
+ └── paper\_simulations/     # Kết quả mô phỏng
 
 
 
@@ -91,6 +91,4 @@ Nguyễn Tuấn Dương
 Nguyễn Ngọc Bảo
 
 Nguyễn Thị Thanh Trà
-
-
 
