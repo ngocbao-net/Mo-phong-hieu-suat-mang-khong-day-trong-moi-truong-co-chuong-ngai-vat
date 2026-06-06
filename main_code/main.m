@@ -1,4 +1,4 @@
-%% ================== PRE-RUN ==================
+%% ================== KHỞI TẠO ==================
 clear; close all;
 warning('off','all')
 set(groot,'defaulttextinterpreter','latex');  
@@ -58,13 +58,13 @@ data         = generate_data(N_data, total_shadow, R);
 figure(); 
 plot_estimation(L, R, total_shadow, data, [], [], 'Data and shadows', buildings);
 
-%% Mesh
+%% Lưới
 N_mesh = 12;
 [x, y] = meshgrid(linspace(-R,R,N_mesh), linspace(-R,R,N_mesh));
 in_disk = x.^2 + y.^2 <= R^2;
 mesh    = [x(in_disk), y(in_disk)];
 
-%% Estimation
+%% Bộ ước lượng kNN kNMAP
 estimated_kNN   = kNN_estimator(data, mesh, K);  
 estimated_kNMAP = kNMAP_estimator(data, lambda, Lmax, mesh, K);  
 
@@ -82,7 +82,7 @@ else
 end
 true_labels = ~in_shadow;
 
-%% Precision
+%% Độ chính xác
 precision_kNN   = estimation_precision(mesh, estimated_kNN,   total_shadow);
 precision_kNMAP = estimation_precision(mesh, estimated_kNMAP, total_shadow);
 
@@ -90,14 +90,14 @@ fprintf('--- SINGLE RUN ---\n');
 fprintf('kNN:   %.2f %%\n', precision_kNN*100);
 fprintf('kNMAP: %.2f %%\n', precision_kNMAP*100);
 
-%% Plot estimation
+%% Hình ước lượng
 figure;
 subplot(1,2,1);
 plot_estimation(L, R, total_shadow, data, mesh, estimated_kNN,   'kNN',   buildings);
 subplot(1,2,2);
 plot_estimation(L, R, total_shadow, data, mesh, estimated_kNMAP, 'kNMAP', buildings);
 
-%% Error map
+%% Bản đồ lỗi
 figure;
 plot_estimation(L, R, total_shadow, data, mesh, estimated_kNMAP, 'Error kNMAP', buildings);
 hold on;
@@ -149,7 +149,6 @@ PL_NLOS_all    = [];
 d_LOS_all      = [];
 d_NLOS_all     = [];
 
-% Lưu tốc độ trung bình từng lần để vẽ đường theo run
 mean_LOS_per_run  = zeros(N_run, 1);
 mean_NLOS_per_run = zeros(N_run, 1);
 
@@ -180,7 +179,7 @@ true_labels = ~in_shadow;
     results_kNN(i)   = estimation_precision(mesh, est_kNN,   total_shadow);
     results_kNMAP(i) = estimation_precision(mesh, est_kNMAP, total_shadow);
 
-    % ===== TÍNH SPEED + PATH LOSS (3GPP TR 38.901) =====
+    % TÍNH SPEED + PATH LOSS (3GPP TR 38.901)
     dist = sqrt(mesh(:,1).^2 + mesh(:,2).^2);
     dist(dist == 0) = 1e-3;
 
@@ -242,7 +241,7 @@ plot(1:N_run, mean_LOS_per_run,  'b-o', 'LineWidth', 2, 'MarkerSize', 6, ...
 plot(1:N_run, mean_NLOS_per_run, 'r-s', 'LineWidth', 2, 'MarkerSize', 6, ...
      'MarkerFaceColor', [0.85 0.33 0.1], 'DisplayName', 'NLOS');
 
-% Đường trung bình tổng (ngang)
+% Đường trung bình tổng 
 yline(mean(mean_LOS_per_run),  'b--', 'LineWidth', 1.5, ...
       'DisplayName', sprintf('TB LOS = %.1f Mbps',  mean(mean_LOS_per_run)));
 yline(mean(mean_NLOS_per_run), 'r--', 'LineWidth', 1.5, ...
@@ -276,7 +275,7 @@ text(1, mean_LOS_total  + 0.5, sprintf('%.2f Mbps', mean_LOS_total),  ...
 text(2, mean_NLOS_total + 0.5, sprintf('%.2f Mbps', mean_NLOS_total), ...
      'HorizontalAlignment','center', 'FontSize', 12, 'FontWeight', 'bold');
 
-%% ================== MONTE CARLO - PRECISION ==================
+%% ================== MONTE CARLO - ĐỘ CHÍNH XÁC ==================
 mean_kNN   = mean(results_kNN);
 mean_kNMAP = mean(results_kNMAP);
 
@@ -329,8 +328,6 @@ edges = linspace(min([PL_LOS_all; PL_NLOS_all]), ...
 bin_centers = (edges(1:end-1) + edges(2:end)) / 2;
 
 figure('Color','w'); hold on;
-
-%  CỘT NGANG (cùng phía, không đối xứng)
 bar(bin_centers, cnt_LOS,  0.4, 'FaceColor', [0 0.45 0.74], ...
      'DisplayName', 'LOS');
 
