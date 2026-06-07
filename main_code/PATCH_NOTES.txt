@@ -1,0 +1,45 @@
+Patched files
+=============
+1) main_simulation.m
+   - Fixed logging of scenario parameters: no longer writes stale lambda before chicago_buildings() overwrites it.
+   - Added downstream evaluation from predicted labels (kNN / kNMAP):
+     * MAE Path Loss against ground truth
+     * MAE Speed against ground truth
+   - Kept truth-based LOS/NLOS speed/path-loss summaries for physical interpretation.
+   - Added clean figure export to outputs_clean/ as PNG + FIG.
+   - Added predicted speed heatmaps and downstream-MAE comparison plots.
+   - Added downstream metrics to N_data sweep.
+
+2) plot_estimation.m
+   - Cleaner plotting, base-station marker, safer handling of empty mesh/estimation.
+
+3) New helper files
+   - compute_true_labels_from_shadow.m
+   - compute_downstream_from_labels.m
+   - export_current_figure.m
+
+4) New script
+   - run_sweep_lambda.m
+   - Reproducible lambda sweep using PPP_buildings(lambda, Lmax, R)
+   - Exports accuracy + downstream MAE plots versus lambda.
+
+How to run
+==========
+A. Main baseline + clean figures
+   >> main_simulation
+
+B. Lambda sweep for traceable figure generation
+   >> run_sweep_lambda
+
+Expected outputs
+================
+- log_results.txt
+- bang_ket_qua.csv
+- outputs_clean/*.png
+- outputs_clean/*.fig
+
+Important interpretation note
+=============================
+- Truth-based LOS/NLOS speed/path-loss figures describe the physical separation between LOS and NLOS.
+- Downstream MAE figures quantify how much error kNN / kNMAP introduce when their predicted labels are used to derive path loss / speed.
+- Therefore, claims about "kNMAP gives better downstream maps" should be supported by the MAE plots, not only by truth-based LOS/NLOS averages.

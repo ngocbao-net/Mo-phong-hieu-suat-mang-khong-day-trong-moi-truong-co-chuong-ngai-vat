@@ -1,4 +1,4 @@
-%% Sweep frequency instead of lambda
+
 clear; close all;
 warning('off','all')
 
@@ -9,7 +9,7 @@ N_mesh = 12;
 Lmax = 20;
 N_run = 50;
 
-% FIX lambda (không sweep nữa)
+
 lambda = 0.00088;
 
 % Sweep frequency
