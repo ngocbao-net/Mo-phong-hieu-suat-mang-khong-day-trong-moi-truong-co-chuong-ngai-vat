@@ -6,7 +6,7 @@
 
 
 
-&#x20; Dự án này mô phỏng hiệu suất mạng không dây trong môi     trường có vật cản bằng MATLAB. Mô phỏng được thực hiện bằng MATLAB, nhằm phản ánh gần với điều kiện thực tế khi triển khai mạng, đặc biệt là sự khác biệt giữa:
+&#x20; Dự án này mô phỏng hiệu suất mạng không dây trong môi trường có vật cản bằng MATLAB. Mô phỏng được thực hiện bằng MATLAB, nhằm phản ánh gần với điều kiện thực tế khi triển khai mạng, đặc biệt là sự khác biệt giữa:
 
 &#x20;   LOS (Line-of-Sight)
 
@@ -24,7 +24,7 @@
 
 &#x20; Đánh giá hiệu suất mạng qua:
 
-&#x20;   Suy hao đường truyền (Path loss) 
+&#x20;   Suy hao đường truyền (Path loss)
 
 &#x20;   Tốc độ truyền dữ liệu (Throughput)
 
@@ -64,11 +64,7 @@ Mo-phong-hieu-suat-mang-khong-day-trong-moi-truong-co-chuong-ngai-vat-main/
 
 
 
-\# Hướng dẫn chạy
-
-
-
-1\. Chạy mô phỏng chính
+\# Hướng dẫn chạy mô phỏng chính
 
 
 
@@ -80,7 +76,9 @@ Mo-phong-hieu-suat-mang-khong-day-trong-moi-truong-co-chuong-ngai-vat-main/
 
 
 
-2\. Chạy khảo sát theo mật độ vật cản
+\#Phần mở rộng
+
+1\. Chạy khảo sát theo mật độ vật cản
 
 
 
@@ -90,7 +88,7 @@ Mo-phong-hieu-suat-mang-khong-day-trong-moi-truong-co-chuong-ngai-vat-main/
 
 
 
-3\. Chạy khảo sát theo tần số 
+2\. Chạy khảo sát theo tần số
 
 
 
